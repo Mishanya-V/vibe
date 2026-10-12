@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Курс (аналог FreeCodeCamp в одном файле)</title>
+  <style>
+    :root { --primary: #4c78a8; --accent: #5f9e6e; --bg: #f5f7fa; --code-bg: #2d3436; --text: #212529; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 1rem; line-height: 1.5; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1, h2, h3 { color: var(--primary); }
+    nav { margin-bottom: 2rem; }
+    nav button { background: white; border: 1px solid #ddd; padding: 0.5rem 1rem; margin-right: 0.5rem; cursor: pointer; border-radius: 4px; }
+    nav button.active { background: var(--primary); color: white; }
+    section { display: none; animation: fadeIn 0.4s ease; }
+    section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    pre { background: #263238; color: #e8e6e3; padding: 1rem; border-radius: 6px; overflow-x: auto; }
+    code { font-family: Consolas, Monaco, monospace; }
+    .task { background: white; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 8px; margin-top: 1rem; }
+    textarea { width: 100%; height: 120px; font-family: monospace; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    button.run { background: var(--accent); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; margin-top: 0.5rem; }
+    button.run:hover { background: #4a8a59; }
+    #output { background: #1a1a1d; color: #0f0; padding: 1rem; border-radius: 6px; margin-top: 0.75rem; min-height: 60px; white-space: pre-wrap; overflow-y: auto; font-size: 0.95rem; }
+    .hint { font-size: 0.85rem; color: #555; margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐍 Python Курс (в одном файле)</h1>
+    <nav id="nav">
+      <button onclick="switchSection('intro')" class="active">Введение</button>
+      <button onclick="switchSection('basics')">Основы</button>
+      <button onclick="switchSection('loops')">Циклы и условия</button>
+      <button onclick="switchSection('functions')">Функции</button>
+      <button onclick="switchSection('practice')">Практика</button>
+    </nav>
+
+    <!-- Section: Intro -->
+    <section id="intro" class="active">
+      <h2>Введение</h2>
+      <p>Этот курс — компактный старт по Python: синтаксис, типы данных, циклы, функции и мини-практика. Всё работает в браузере.</p>
+      <p><strong>Как пользоваться:</strong> читай теорию, пробуй примеры в окне кода, нажимай «Запустить» и смотри вывод.</p>
+    </section>
+
+    <!-- Section: Basics -->
+    <section id="basics">
+      <h2>Основы Python</h2>
+      <h3>Переменные и типы</h3>
+      <pre><code>name = "Алиса"
+age = 16
+height = 1.72
+is_student = True</code></pre>
+      <p>Python динамически типизирован: тип определяется автоматически.</p>
+
+      <h3>Ввод/вывод</h3>
+      <pre><code>name = input("Как тебя зовут? ")
+print("Привет,", name)</code></pre>
+
+      <div class="task">
+        <h4>Задание 1</h4>
+        <p>Напиши код, который запрашивает возраст и выводит: «Тебе X лет».</p>
+        <textarea id="code1">age = input("Сколько тебе лет? ")
+print("Тебе", age, "лет")</textarea>
+        <button class="run" onclick="runCode(1)">Запустить</button>
+        <div id="output1" class="output"></div>
+      </div>
+    </section>
+
+    <!-- Section: Loops -->
+    <section id="loops">
+      <h2>Циклы и условия</h2>
+      <h3>Условие if-else</h3>
+      <pre><code>x = 10
+if x > 5:
+    print("x больше 5")
+else:
+    print("x меньше или равно 5")</code></pre>
+
+      <h3>Цикл for</h3>
+      <pre><code>for i in range(5):
+    print(i)</code></pre>
+
+      <div class="task">
+        <h4>Задание 2</h4>
+        <p>Выведи квадраты чисел от 1 до 5 (1, 4, 9, 16, 25).</p>
+        <textarea id="code2">for i in range(1, 6):
+    print(i * i)</textarea>
+        <button class="run" onclick="runCode(2)">Запустить</button>
+        <div id="output2" class="output"></div>
+      </div>
+    </section>
+
+    <!-- Section: Functions -->
+    <section id="functions">
+      <h2>Функции</h2>
+      <pre><code>def greet(name):
+    return f"Привет, {name}!"
+
+print(greet("Мария"))</code></pre>
+
+      <div class="task">
+        <h4>Задание 3</h4>
+        <p>Создай функцию <code>square(x)</code>, которая возвращает квадрат числа. Вызови её для 7 и выведи результат.</p>
+        <textarea id="code3">def square(x):
+    return x * x
+
+print(square(7))</textarea>
+        <button class="run" onclick="runCode(3)">Запустить</button>
+        <div id="output3" class="output"></div>
+      </div>
+    </section>
+
+    <!-- Section: Practice -->
+    <section id="practice">
+      <h2>Практика: мини-проект</h2>
+      <p>Сделай калькулятор: запроси два числа и операцию (+, -, *, /), выведи результат. Обработай деление на ноль.</p>
+      <textarea id="code4" style="height:180px">
+a = float(input("Первое число: "))
+b = float(input("Второе число: "))
+op = input("Операция (+, -, *, /): ")
+
+if op == "+":
+    res = a + b
+elif op == "-":
+    res = a - b
+elif op == "*":
+    res = a * b
+elif op == "/":
+    if b == 0:
+        res = "Ошибка: деление на ноль"
+    else:
+        res = a / b
+else:
+    res = "Неизвестная операция"
+
+print("Результат:", res)
+</textarea>
+      <button class="run" onclick="runCode(4)">Запустить</button>
+      <div id="output4" class="output"></div>
+      <p class="hint">Подсказка: используй <code>float()</code> для чисел с плавающей точкой и проверяй <code>b == 0</code>.</p>
+    </section>
+  </div>
+
+  <script>
+    // Простой интерпретатор на базе Pyodide (запускается в браузере)
+    let pyodideLoaded = false;
+    const pyodideUrl = 'https://pyodide.org/pyodide/v0.27.0/pyodide.js';
+
+    async function loadPyodide() {
+      if (pyodideLoaded) return;
+      const script = document.createElement('script');
+      script.src = pyodideUrl;
+      document.head.appendChild(script);
+      await new Promise((resolve) => script.onload = resolve);
+      const pyodide = await loadPyodide();
+      window.pyodide = pyodide;
+      pyodideLoaded = true;
+    }
+
+    function switchSection(id) {
+      document.querySelectorAll('section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    async function runCode(taskId) {
+      if (!pyodideLoaded) await loadPyodide();
+      const code = document.getElementById(`code${taskId}`).value;
+      const outputEl = document.getElementById(`output${taskId}`);
+      outputEl.textContent = 'Запуск...';
+      try {
+        const result = await window.pyodide.runPythonAsync(code);
+        outputEl.textContent = String(result || '').trim() || '(код выполнен без вывода)';
+      } catch (e) {
+        outputEl.style.color = '#ff4d4d';
+        outputEl.textContent = e.toString().split('\n')[0]; // показываем первую строку ошибки
+      }
+    }
+  </script>
+</body>
+</html>
